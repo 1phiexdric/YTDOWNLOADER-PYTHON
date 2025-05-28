@@ -1,0 +1,235 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial Black', sans-serif;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+}
+
+body{
+    background-color: #000000;
+    display: flex; /* Activa Flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
+    margin: 0; /* Elimina márgenes predeterminados */
+}
+
+#main-container{
+    background-color: gray;
+    max-width: 80%;
+    height: auto;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+#main-container:hover {
+    box-shadow: 0 4px 8px red;
+    transform: scale(1.02);
+}
+
+#title{
+    text-shadow: 2px 2px 2px #000;
+    text-align: center;
+    font-size: 1.8em;
+    letter-spacing: 2px;
+    margin: 10px 20px;
+}
+#container-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#btn-and-loader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 500px;
+  min-width: 400px;
+}
+
+#container-btn{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+
+#container-btn button{
+    width: 140px;
+    margin: 5px;
+}
+
+#link-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#link-container #delete{
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+#link-container i{
+    font-size: 19px;
+    padding: 8px;
+    background-color: #E50914;
+    
+}
+
+#url-input{
+    font-size: 18px;
+    padding: 5px;
+    color: gray;
+    border-radius: 5px 0 0 5px;
+    text-transform: uppercase;
+    margin: 10px auto;
+}
+
+#url-input:focus {
+    outline-style: solid;
+    outline-color: #E50914;
+    outline-width: 1px;
+}
+.btn{
+    max-height: 40px;
+    background-color: #E50914;
+    font-size: 16px;
+    color: white;
+    padding: 5px;
+    border: 1px solid gray;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5); /* Sombra */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:hover{
+    transform: scale(1.1);
+    box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.7); /* Sombra más intensa al pasar el cursor */
+}
+
+.btn:active{
+    box-shadow: 1px 5px 25px -5px rgba(0, 0, 0, 0.75);
+
+}
+
+.btn i{
+ margin-left: 5px;
+}
+
+.separador{
+    display: none;
+    width: 90%;
+    margin-top: 5px;
+    border: 1px solid black;
+}
+
+.visible{
+    display: block;
+}
+
+#resolution-container{
+    width: 100%;
+    max-width: 500px; /* Opcional: limita el ancho máximo */
+    margin: 0 auto; /* Centra el contenedor */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#resolution-buttons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+#resolution-title{
+    text-shadow: 2px 2px 2px #000;
+    margin-top: 10px;
+}
+
+.resoluciones{
+    border: none;
+    width: 70px;
+    height: 30px;
+    font-size: 14px;
+    text-align: center;
+    margin: 5px;
+}
+
+
+/*Menu*/
+
+#botonMenu{
+    color: #000;
+    position: fixed;
+    top: calc(30% - 20px);
+}
+
+#menuDesplegable{
+    position: fixed;
+    max-width: 90%;
+    width: 90%;
+    height: 250px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  opacity: 0; /* Inicialmente oculto */
+  visibility: hidden; /* Inicialmente oculto */
+  transition: all 0.4s; /* Transición suave */
+}
+
+#menuDesplegable.mostrar {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out, visibility 0s 0s; /* Transición al mostrar */
+}
+
+
+#menuDesplegable #cerrarMenu{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    margin: 5px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 50%;
+    
+}
+
+#menuDesplegable #cerrarMenu:hover{
+    background-color: #E50914;
+}
+
+#menuDesplegable #cerrarMenu .fa-remove{
+    color: black;
+    font-size: 30px;
+    margin: auto;
+}
+
+#botonMenu {
+  /* Estilos para el botón (opcional) */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
