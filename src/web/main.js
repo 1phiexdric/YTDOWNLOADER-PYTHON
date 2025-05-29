@@ -1,11 +1,16 @@
 let url = ''
+// botones
 const btnMp3 = document.getElementById('MP3');
 const videoButton = document.getElementById('MP4')
 const btnDelete = document.getElementById('delete')
+
+//containers
 const newContainer = document.createElement('div')
 const flexContainer = document.getElementById('container-flex')
-const separador = document.getElementById('hr')
 flexContainer.append(newContainer)
+
+//others
+const separador = document.getElementById('hr')
 const urlInput = document.getElementById('url-input')
 urlInput.addEventListener('input', ()=>{
     url =  urlInput.value
@@ -14,16 +19,17 @@ urlInput.addEventListener('input', ()=>{
 
 btnMp3.addEventListener('click', async () => {
     limpiar()
-    
-    try {
-        showLoader('Descargando...')
-        const descarga = await eel.descargar_musica_exposed(url)();
-        if(!descarga){
-            mostrarNotificacion("✅ Descargar Completada", "green")
+
+    try{
+        let bibrate = ['70k','128k', '160k', '190k', '320k']
+        if (url){
+            showLoader('Buscando Bibrates...')
+        }else{
+            mostrarNotificacion('❌ Url vacia', 'red')
         }
-    } catch (error) {
-        console.error('Error calling eel.descargar_musica:', error);
-        
+        crearbtones(bibrate, 'musica')
+    }catch(error){
+        console.log(error);
     }finally{
         hideLoad()
     }
@@ -35,11 +41,6 @@ btnMp3.addEventListener('click', async () => {
 videoButton.addEventListener('click', async()=>{
     limpiar()
     
-    const h3 = document.createElement('h3')
-    h3.id = 'resolution-title'
-    h3.textContent = 'Resoluciones Disponibles'
-    const newdiv = document.createElement('div')
-    newdiv.id = 'resolution-buttons'
     try{
         let resoluciones
         if(url){
@@ -53,41 +54,21 @@ videoButton.addEventListener('click', async()=>{
             mostrarNotificacion("❌ Error al descargar", "red")
             return
         }
-        newContainer.id = 'resolution-container'
-        resoluciones.forEach(element => {
-            const btn = document.createElement('button')
-            btn.textContent = element
-            btn.classList.add('btn')
-            btn.classList.add('resoluciones')
-            separador.classList.add('visible')
-            newContainer.append(h3)
-            newContainer.append(newdiv)
-        
-            newdiv.append(btn)
-            btn.addEventListener('click', async()=>{
-                showLoader('Descargando')
-                try{
-                    await eel.descargar_video_exposed(url, element)()
-                    mostrarNotificacion("✅ Descarga completada")
-                }catch(error){
-                    console.log('error')
-                }finally{
-                    hideLoad()
-                }
-            })
-        });
-    }catch(error){
-        console.log('ha habido un error' + error);
-    }finally{
         hideLoad()
+        crearbtones(resoluciones, 'video')
+    }
+    catch(error){
+        console.log(error);
     }
 })
+
 btnDelete.addEventListener('click', () => {
-    urlInput.value = ''
-    url = ''
-    limpiar()
-});
-const loaderContainer = document.getElementById('loader-container')
+    urlInput.value = '';
+    url = '';
+    limpiar();
+})
+
+const loaderContainer = document.getElementById('loader-container');
 
 function showLoader(mensaje){
     const loaderText = document.getElementById('loader-text')
@@ -154,3 +135,40 @@ guardar.addEventListener('click', async () => {
             mostrarNotificacion("error con la ruta", "red")
     }
 }})
+
+function crearbtones(calidades, tipo){
+    newContainer.innerHTML=""
+    newContainer.id = 'resolution-container'
+    const h2 = document.createElement('h2')
+    h2.id = 'resolution-title'
+    h2.textContent = "calidades disponibles"
+    const newdiv = document.createElement('div')
+    newdiv.id= 'resolution-buttons'
+    newContainer.append(h2, newdiv)
+    //separador.classList.add('visible')
+    calidades.forEach(element => {
+        const btn = document.createElement('button')
+        btn.textContent = element
+        btn.classList.add('btn')
+        btn.classList.add('resoluciones')
+        separador.classList.add('visible')
+        newdiv.append(btn)
+        btn.addEventListener('click', async ()=>{
+            showLoader('Descargando...')
+            try{
+
+                if(tipo == "video"){
+                    await eel.descargar_video_exposed(url, element)()
+                }else if(tipo == "musica"){
+                    await eel.descargar_musica_exposed(url, element)();
+                }
+                mostrarNotificacion("✅ Descarga completada")
+            }catch(error){
+                console.log(error);
+            }finally{
+                hideLoad()
+            }
+        })
+    });
+
+}
