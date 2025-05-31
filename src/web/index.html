@@ -1,55 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descargador</title>
+    <title>YtDownloader</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="shortcut icon" href="img/icono.png" />
+    <link rel="shortcut icon" href="assets/icono.ico" />
     <script src="/eel.js"></script>
     <script src="main.js" defer></script>
-    <link rel="stylesheet" href="css/text.css">
-    <link rel="stylesheet" href="css/spinner.css">
 </head>
+
 <body>
+    <div id="all">
+        <button id="botonMenu" class="spinning">
+            <img src="assets/engranaje.svg" id="imgBtnMenu" alt="engranaje menu" >
+        </button>
+    
     <div id="main-container">
-        <h1 id="title">Descarga musica de youtube en MP3</h1>
+        <h1 id="title">YtDownloader</h1>
         <div id="container-flex">
             <div id="link-container">
                 <input id="url-input" type="text" placeholder="Ingresa el link">
-            <button id="delete"><i class="fa fa-remove"></i></button>
+                <button id="delete"><i class="fa fa-remove"></i></button>
             </div>
             <div id="btn-and-loader">
-            <div id="container-btn">
-                <button class="btn" id="MP3"><i class="fas fa-download"></i>MP3</button>
-                <button class="btn" id="MP4"><i class="fas fa-download"></i>VIDEO</button>
-            </div>
-            <div id="loader-container" class="neon-container">
-                <span class="loader"></span>
-                <p class="neon-text" id="loader-text"></p>
-            </div>
+                <div id="container-btn">
+                    <button class="btn" id="MP3"><i class="fas fa-download"></i>MP3</button>
+                    <button class="btn" id="MP4"><i class="fas fa-download"></i>VIDEO</button>
+                </div>
+                <div id="loader-container" class="neon-container">
+                    <span class="loader"></span>
+                    <p class="neon-text" id="loader-text"></p>
+                </div>
             </div>
             <hr class="separador" id="hr">
 
         </div>
-        
-    </div>
-<div id="notificacion" style="display: none; position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 15px; border-radius: 5px; z-index: 1000;">
 
-</div>
-    <button id="botonMenu">Abrir menu</button>
-       <div id="menuDesplegable">
+    </div>
+    <div id="notificacion">
+
+    </div>
+    
+    <div id="menuDesplegable">
         <button id="cerrarMenu">
             <i class="fa fa-remove"></i>
         </button>
-        <button class="btn" id="btnFolder">
-            Seleccionar carpeta
-        </button>
-        <div id="carpetaSeleccionada">
+        <div id="optionContainer">
+            <div>
+            <p>Seleccionar Carpeta de destino</p>
+
+            <div id="carpetaSeleccionada" style="visibility: hidden;">
+                <p></p>
+            </div>
+            <button class="btnsdemenu" id="btnFolder">
+                Cambiar
+            </button>
+            </div>
+            
+            <div>
+                <label for="playlist" id="lselector">
+                    Descarga de playlist:
+                </label>
+                <select name="playlist" id="playlist">
+                    <option value=true>No</option>
+                    <option value=false>Si</option>
+                </select>
+            </div>
+            <div class="flexbtn">
+                <button id="guardar" class="btnsdemenu">save</button>
+                <button id="reset" class="btnsdemenu">Reset</button>
+            </div>
         </div>
-        <button id="guardar">save</button>
-        <button id="default"></button>
+        
+    </div>
+    </div>
     </div>
 </body>
+
 </html>
